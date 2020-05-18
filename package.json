@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "node-fetch": "2.6.0",
+        "writefile": "0.2.8",
+        "blob-to-buffer": "1.2.8"
+    }
+}
