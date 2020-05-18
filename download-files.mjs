@@ -27,7 +27,6 @@ async function main() {
         index++;
 
         const url = new URL(loc);
-        console.log(url.host);
         let folder;
         if (url.pathname === "/" || url.pathname === "") {
             url.pathname = "/index.html";
@@ -35,17 +34,23 @@ async function main() {
         if (url.host === "minezmap.com") {
             folder = "minezmap";
         } else if (url.host === "shotbow.net") {
-            folder = "shotbow"
+            // folder = "shotbow";
+            return;
         } else {
             return;
         }
         try {
-            /**
-             * @type {ArrayBuffer}
-             */
-            const file = await (await (await fetch(loc)).blob()).arrayBuffer();
-            const buffer = new Buffer(file);
-            await writefile(join(".", folder, url.pathname), buffer)
+            const fetched = await fetch(loc);
+            if (fetched.ok) {
+                /**
+                 * @type {ArrayBuffer}
+                 */
+                const file = await (await fetched.blob()).arrayBuffer();
+                const buffer = new Buffer(file);
+                await writefile(join(".", folder, url.pathname), buffer)
+            } else {
+                console.log(loc);
+            }
         } catch (e) {
             console.log(e);
         }
