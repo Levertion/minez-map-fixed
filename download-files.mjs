@@ -23,10 +23,9 @@ async function main() {
             clearInterval(res);
             return;
         }
-        const loc = urls[index];
+        const src = urls[index].replace(".min.js", ".js");
+        const url = new URL(urls[index]);
         index++;
-
-        const url = new URL(loc);
         let folder;
         if (url.pathname === "/" || url.pathname === "") {
             url.pathname = "/index.html";
@@ -40,16 +39,16 @@ async function main() {
             return;
         }
         try {
-            const fetched = await fetch(loc);
+            const fetched = await fetch(src);
             if (fetched.ok) {
                 /**
                  * @type {ArrayBuffer}
                  */
                 const file = await (await fetched.blob()).arrayBuffer();
-                const buffer = new Buffer(file);
+                const buffer = Buffer.from(file);
                 await writefile(join(".", folder, url.pathname), buffer)
             } else {
-                console.log(loc);
+                console.log(src);
             }
         } catch (e) {
             console.log(e);
