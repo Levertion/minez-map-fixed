@@ -1,0 +1,416 @@
+<!DOCTYPE html> <!--[if lt IE 7 ]><html
+dir="ltr" lang="en-US" class="no-js ie ie6 lte7 lte8 lte9"><![endif]--> <!--[if IE 7 ]><html
+dir="ltr" lang="en-US" class="no-js ie ie7 lte7 lte8 lte9"><![endif]--> <!--[if IE 8 ]><html
+dir="ltr" lang="en-US" class="no-js ie ie8 lte8 lte9"><![endif]--> <!--[if IE 9 ]><html
+dir="ltr" lang="en-US" class="no-js ie ie9 lte9"><![endif]--> <!--[if (gt IE 9)|!(IE)]><!--><html
+dir="ltr" lang="en-US" class="no-js"><!--<![endif]-->
+<head>
+	<title>MineZ Map</title>
+	
+	<meta name="description" content="Up-to-date HD MineZ map viewer with location markers, Rei's minimap waypoint exporter, detailed location information and more." />
+	<meta name="keywords" content="MineZ map, MineZ locations, MineZ map viewer, MineZ, map overviewer, map, Rei's minimap" />
+	<meta name="robots" content="index, follow" />
+
+	<meta property="og:image" content="http://redbanhammer.com/assets/img/RBH-150.png" />
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-control" content="max-age=0" />
+	<meta http-equiv="Cache-Control" content="post-check=0, pre-check=0" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT" />
+	
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	
+	<link rel="stylesheet" href="/src/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/src/leaflet/css/leaflet.css" />
+	<link rel="stylesheet" href="/src/leaflet/css/L.Control.Zoomslider.css" />
+	<link rel="stylesheet" href="/src/icons/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/src/leaflet/css/MarkerCluster.Default.css" />
+
+	<!-- Minimized assets -->
+	<link rel="stylesheet" href="/src/map/css/map.css?v=48cf041033755ca64cd830146ff44305" />
+	<link rel="stylesheet" href="/src/map/css/map.mobile.css?v=bc67732992f245009c472b66b9ce21dd" media="only screen and (max-width: 800px)" />
+
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="/src/leaflet/css/leaflet.ie.css?v=0" />
+		<link rel="stylesheet" href="/src/leaflet/css/L.Control.Zoomslider.ie.css?v=0" />
+		<link rel="stylesheet" href="/src/leaflet/css/MarkerCluster.Default.ie.css?v=0" />
+	<![endif]-->
+
+	<!--[if lte IE 10]>
+		<link rel="stylesheet" href="/src/map/css/map.ie.css?v=0" />
+	<![endif]-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="/src/map/images/favicon.png">
+
+	<!-- Google Webfonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,800,300,600" rel="stylesheet" type="text/css" />
+
+	<!-- Frontloaded Scripts -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/src/jquery/jquery.min.js"><\/script>')</script>
+	<script type="text/javascript" src="/src/jquery/jquery.browser.mobile.js"></script>
+</head>
+<body>
+	<div id="navbar">
+		<div class="logoContainer">
+			<div class="logo"></div>
+			<div class="invertedCorner"></div>
+			<div class="extendCorner"></div>
+			<div class="extendCorner"></div>
+		</div>
+		<div class="searchContainer">
+			<i class="icon-search icon-white"></i>
+			<input class="navSearch" placeholder="Search for locations and coordinates" data-provide="typeahead" autocomplete="off" spellcheck="false" />
+		</div>
+		<div class="alert" style="display: none !important" id="externalReferrerAlert">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			MineZ is part of the <a href="https://shotbow.net" target="_blank">Shotbow Network</a>. Connect to US.SHOTBOW.NET to start playing!
+		</div>
+	</div>
+	<div id="sidebarContainer">
+		<div id="sidebar-alt"></div>
+		<div id="sidebar">
+			<div>
+				<div>
+					<script type="text/javascript">
+						var showThanks = Math.random() < .02;
+						if (!showThanks && !$.browser.mobile) {
+							var delayCheck = Math.random() < .35;
+							if (top.location != self.location && false) {
+								if (Math.random() <= 0.5) { // Text and rich ads
+									<!--
+									google_ad_client = "ca-pub-6574745185259246";
+									/* MineZ Map Sidebar Embedded */
+									google_ad_slot = "5326771673";
+									google_ad_width = 300;
+									google_ad_height = 250;
+									//-->
+								} else { // Rich ads only
+									<!--
+									google_ad_client = "ca-pub-6574745185259246";
+									/* MineZ Map Sidebar Embedded Rich */
+									google_ad_slot = "9823656478";
+									google_ad_width = 300;
+									google_ad_height = 250;
+									//-->
+								}
+							} else {
+								if (Math.random() <= 0.5 && false) { // Text and rich ads
+									<!--
+									google_ad_client = "ca-pub-6574745185259246";
+									/* MineZ Map Sidebar */
+									google_ad_slot = "6318617275";
+									google_ad_width = 300;
+									google_ad_height = 250;
+									//-->
+								} else { // Rich ads only
+									<!--
+									google_ad_client = "ca-pub-6574745185259246";
+									/* MineZ Map Sidebar Rich */
+									google_ad_slot = "2300389670";
+									google_ad_width = 300;
+									google_ad_height = 250;
+									//-->
+								}
+							}
+						}
+					</script>
+					<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+				</div>
+			</div>
+			<div type="blocked-background"></div>
+			<div type="blocked-header">
+				Using an ad blocker?
+			</div>
+			<div type="blocked-desc">
+				Ads pay for 100% of the hosting costs :/
+			</div>
+			<div id="toggleSidebarContainer">
+				<div id="toggleSidebar" class="expanded">
+					<i class="icon-caret-right"></i>
+					<i class="icon-caret-left"></i>
+				</div>
+			</div>
+			<div>
+				<div id="sidebarButtons">
+					<div class="accordion" id="accordion2">
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-c1">
+									<i class="icon-map-marker"></i>Marker Options
+								</a>
+							</div>
+							<div id="accordion-c1" class="accordion-body collapse">
+								<div class="accordion-inner">
+								<button id="markerOptions-all" class="btn btn-primary">All</button>
+								<button id="markerOptions-none" class="btn btn-primary">None</button>
+								<hr>
+								<div id="checkboxContainer"></div>
+							  </div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-c2">
+									<i class="icon-download-alt"></i>Export Waypoints
+								</a>
+							</div>
+							<div id="accordion-c2" class="accordion-body collapse">
+								<div class="accordion-inner">
+									<label>Server IP <span class="small">(CASE sensitive)</span></label>
+									<input id="serverIp" type="text" placeholder="us.minez.net" data-provide="typeahead" autocomplete="off" spellcheck="false" />
+									<hr>
+									<label class="checkbox">
+										<input id="exportVisibility" type="checkbox" value="">
+										Waypoints visible by default <div class="small">(Go into Rei's Minimap menu to manage waypoints)</div>
+									</label>
+									<hr>
+									<div id="exportLayers"></div>
+									<hr>
+									<button id="export-help" class="btn">Help</button>
+									<button id="export-download" class="btn btn-primary">Download</button>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-c3">
+									<i class="icon-info-sign"></i>About
+								</a>
+							</div>
+							<div id="accordion-c3" class="accordion-body collapse">
+							  <div class="accordion-inner">
+								This Minecraft web map is part of the <a href="http://minemap.net" target="_blank">MineMap Project</a> and was independently developed by RedBanHammer.  MineMap began with the simple goal to create the best online map possible for the vast world of MineZ.  Since then, the project has expanded to many other Minecraft video game servers.
+                                <br><hr>
+                                Special thanks to Andrew323, Kittykiller, Xeroxcat, Majicou, Mosh_Von_Void, IvanDoomy, Fridge and many others for contributing to this project.
+                                <br><hr>
+                                The Minecraft world render was created using the <a href="http://overviewer.org" target="_blank">Minecraft Overviewer</a>, the map is powered by <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and the interface uses <a href="https://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a> and <a href="https://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>.
+							  </div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-c4">
+									<i class="icon-heart"></i>Donate
+								</a>
+							</div>
+							<div id="accordion-c4" class="accordion-body collapse">
+							  <div class="accordion-inner">
+								Like the map?  Your support helps me continue development and pay for bandwidth costs.  Thanks in advance!<br><br>
+								<center>-<i>RedBanHammer</i></center><hr>
+								<center><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N44PSL2TUHJ7J" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></center><br>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="sidebarTips" class="well">
+					<ul>
+						<li><b>Click markers for detailed info!</b></li>
+						<li id="randomTip"><i>Loading random tip...</i></li>
+					</ul>
+					<hr>
+					<center>Feedback?<br>
+						Missing or inaccurate markers?<br>
+						<i><a href="#" id="send-message" class="javascriptLink">Send me a message!</a></i>
+					</center>
+				</div>
+				<div id="copyright"><a href="http://minemap.net" target="_blank">© 2012+ MineMap.net</a></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Map HUD -->
+	<div id="hudContainer">
+		<div id="coordsBoxContainer">
+			<div id="coordsBox">
+				<span id="coords">x0 z0</span>
+				<span id="linkContainer">
+					<i id="viewportLink" class="icon-link"></i>
+				</span>
+			</div>
+		</div>
+
+		<div id="dropdownContainer">
+			<div id="tilesetDropdown" class="dropdown btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					<span class="content"></span>
+					<span class="icon-caret-down"></span>
+				</a>
+				<ul class="dropdown-menu"></ul>
+			</div>
+
+			<!-- <div id="worldDropdown" class="dropdown btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					<span class="content"></span>
+					<span class="icon-caret-down"></span>
+				</a>
+				<ul class="dropdown-menu"></ul>
+			</div> -->
+		</div>
+
+		<div id="chestLegend" class="collapsed">
+			<span>Civilian Chests</span>
+            <ul>
+                <li><div class="markerImg" style="background: url(/src/map/images/civ_common.png) 0 2px no-repeat;"></div><div> Civ_common</div></li>
+                <li><div class="markerImg" style="background: url(/src/map/images/civ_tool.png) 0 2px no-repeat;"></div><div> Civ_tool</div></li>
+                <li><div class="markerImg" style="background: url(/src/map/images/tool_south.png) 0 2px no-repeat;"></div><div> Tool_south</div></li>
+            </ul>
+			<span>Military Chests</span>
+			<ul>
+				<li><div class="markerImg" style="background: url(/src/map/images/mil_common.png) 0 2px no-repeat;"></div> Mil_common</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/mil_uncommon.png) 0 2px no-repeat;"></div> Mil_uncommon</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/mil_rare.png) 0 2px no-repeat;"></div> Mil_rare</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/mil_epic.png) 0 2px no-repeat;"></div> Mil_epic</li>
+			</ul>
+            <span>Food Chests</span>
+            <ul>
+                <li><div class="markerImg" style="background: url(/src/map/images/food_common.png) 0 2px no-repeat;"></div><div> Food_common</div></li>
+                <li><div class="markerImg" style="background: url(/src/map/images/food_uncommon.png) 0 2px no-repeat;"></div><div> Food_uncommon</div></li>
+                <li><div class="markerImg" style="background: url(/src/map/images/food_rare.png) 0 2px no-repeat;"></div><div> Food_rare</div></li>
+            </ul>
+            <span>Potion Chests</span>
+			<ul>
+				<li><div class="markerImg" style="background: url(/src/map/images/mil_common.png) 0 2px no-repeat;"></div> Pot_south</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/pot_common.png) 0 2px no-repeat;"></div> Pot_common</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/pot_uncommon.png) 0 2px no-repeat;"></div> Pot_uncommon</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/pot_rare.png) 0 2px no-repeat;"></div> Pot_rare</li>
+			</ul>
+			<span>Other Chests</span>
+			<ul class="lastUl">
+                <li><div class="markerImg" style="background: url(/src/map/images/axis_mindi.png) 0 2px no-repeat;"></div> Axis_mindi</li>
+                <li><div class="markerImg" style="background: url(/src/map/images/spire_air.png) 0 2px no-repeat;"></div> Spire_air</li>
+                <li><div class="markerImg" style="background: url(/src/map/images/spire_earth.png) 0 2px no-repeat;"></div> Spire_earth</li>
+                <li><div class="markerImg" style="background: url(/src/map/images/spire_fire.png) 0 2px no-repeat;"></div> Spire_fire</li>
+                <li><div class="markerImg" style="background: url(/src/map/images/spire_water.png) 0 2px no-repeat;"></div> Spire_water</li>
+                <li><div class="markerImg" style="background: url(/src/map/images/eillom_ale.png) 0 2px no-repeat;"></div> Eillom_ale</li>
+				<li><div class="markerImg" style="background: url(/src/map/images/unknown.png) 0 2px no-repeat;"></div> Unknown</li>
+			</ul>
+			<div id="chestLegend-close">
+				<i class="icon-chevron-up"></i>
+			</div>
+		</div>
+	</div>
+
+	<!-- Leaflet map element -->
+	<div id="mapContainer"></div>
+
+	<!-- Banner for mobile only -->
+	<div id="mobileBanner">
+		<script type="text/javascript">
+			if ($.browser.mobile && location.href.indexOf("NO_MOBILE_ADSENSE") == -1) {
+				$("#coordsBoxContainer").css("bottom", "60px");
+				google_ad_client = "ca-pub-6574745185259246";
+				/* MineZ Map Small Mobile Banner */
+				google_ad_slot = "6113105271";
+				google_ad_width = 320;
+				google_ad_height = 50;
+			} else {
+				$("#mobileBanner").css("display", "none");
+			}
+		</script>
+		<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
+		<div id="mobileBannerClose"><i class="icon-remove"></i></div>
+		<script>
+			setTimeout(function() {
+				$("#mobileBannerClose").css("opacity", 1).click(function() {
+					$("#mobileBanner").css("display", "none");
+					$("#coordsBoxContainer").css("bottom", "10px");
+				});
+			}, 10*1000);
+		</script>
+	</div>
+
+	<!-- Modal windows -->
+	<div id="waypointsHelp" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="waypointsHelpHeader" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="waypointsHelpHeader">Export Waypoints Help</h3>
+		</div>
+		<div class="modal-body">
+			<ol>
+				<li>Type in the server you normally join (i.e. us.minez.net)</li>
+				<li>Select the types of waypoints you want (i.e. no spawn, only major, etc)<br></li>
+				<li>Click Download, and locate the downloaded SERVERNAME.DIM0.points file<br></li>
+				<li>Drag the file into either...<br>
+				<i>%Appdata%/.minecraft/mods/rei_minimap</i> <b>(Windows)</b><br>
+				<i>/Users/USER/Library/Application Support/minecraft/mods/rei_minimap</i> <b>(Mac)</b><br></li>
+				<li>Open Minecraft. If you didn't select for waypoints to be visible by default, press <b>[m]</b>, click <b>Waypoints</b>, and enable any you need.</li>
+			</ol>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>
+
+	<div id="contactForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactFormHeader" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="contactFormHeader">Contact RedBanHammer <small class="subject">MineZ Map</small></h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label>Username</label>
+				<input id="contactForm-username" type="text" placeholder="Notch"></input>
+			</div>
+			<div class="control-group messagearea">
+				<label>Message</label>
+				<textarea id="contactForm-message" rows="3" placeholder="Ex: Hi Mr. RedBanHammer, nice to meet you!"></textarea>
+			</div>
+			<div class="control-group">
+				<label>Email (optional)</label>
+				<input id="contactForm-email" type="text" placeholder="user@example.com"></input>
+			</div>
+			<p>I normally respond within a few days if you provide a <b>valid email</b>.</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary" type="submit">Send</button>
+		</div>
+	</div>
+	
+	<!-- JS Libraries -->
+	<script type="text/javascript" src="/src/leaflet/js/leaflet.js?v=5b35310fb9302bf521a4d0f6bbe9a293"></script>
+	<script type="text/javascript" src="/src/leaflet/js/L.Control.Zoomslider.js"></script>
+	<script type="text/javascript" src="/src/leaflet/js/leaflet.markercluster.js?v=3a890c1e408790cb5b38106068d1a076"></script>
+	<script type="text/javascript" src="/src/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/src/jquery/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="/src/jquery/jquery.total-storage.min.js?v=4bcfaa4aef116e7ee1e6920b2ee5b781"></script>
+
+	<!-- Map Sources -->
+	<script type="text/javascript" src="/src/map/js/overviewerConfig.js?v=ea492e5e7b40e865da566aa7472f830c"></script>
+	<script type="text/javascript" src="/src/map/js/overviewer.min.js?v=6fbd6f099f5f6e1392873913c49cf072"></script>
+	<script type="text/javascript" src="/src/map/js/markers.js?v=49b42d78ef2eb481892ebcd32da83871"></script>
+	<script type="text/javascript" src="/src/map/js/core.min.js?v=736d7037a0c42c7c4f37cb55a26e11da"></script>
+	<script type="text/javascript" src="/src/map/js/mapUiConfig.js?v=3c9553d00dbad4b30f291bd9619a044d"></script>
+	<script type="text/javascript" src="/src/map/js/mapUi.min.js?v=4d3650b377f5c24286d93e5d3ff1f8fe"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			overviewer.util.initialize();
+			core.util.initialize();
+			mapUi.util.initialize();
+		});
+	</script>
+
+	<!-- Trackers -->
+	<script type="text/javascript">
+		var sc_project=8318351; 
+		var sc_invisible=1; 
+		var sc_security="6a11502c";
+		var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+		document.write("<sc"+"ript type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></"+"script>");
+	</script>
+</body>
+</html>
